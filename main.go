@@ -40,6 +40,8 @@ const (
 	StatusUnkn = 3
 )
 
+const timeFormat string = "2006-01-02 15:04:05"
+
 func main() {
 	rootCmd := configureRootCommand()
 	rootCmd.Execute()
@@ -106,16 +108,16 @@ func checkMostRecentSnapshot(snapshots []Snapshot) {
 	snapshot = getMostRecentSnapshot(snapshots)
 
 	if snapshot.Time.Before(time.Now().Add(-time.Second * time.Duration(critTime))) {
-		fmt.Println("CRITICAL: last snapshot date is", snapshot.Time.Format("2006-01-02 15:04:05"))
+		fmt.Println("CRITICAL: last snapshot date is", snapshot.Time.Format(timeFormat))
 		os.Exit(StatusCrit)
 	}
 
 	if snapshot.Time.Before(time.Now().Add(-time.Second * time.Duration(warnTime))) {
-		fmt.Println("WARNING: last snapshot date is", snapshot.Time.Format("2006-01-02 15:04:05"))
+		fmt.Println("WARNING: last snapshot date is", snapshot.Time.Format(timeFormat))
 		os.Exit(StatusWarn)
 	}
 
-	fmt.Println("OK: last snapshot date is", snapshot.Time.Format("2006-01-02 15:04:05"))
+	fmt.Println("OK: last snapshot date is", snapshot.Time.Format(timeFormat))
 	os.Exit(StatusOK)
 }
 
