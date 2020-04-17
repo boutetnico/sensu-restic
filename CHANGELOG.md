@@ -7,7 +7,7 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
-## [0.0.1] - 2020-04-17
+## [1.0.0] - 2020-04-17
 
 ### Added
-- Initial release
+- New plugin to check the age of the latest Restic snapshot. (@boutetnico)
